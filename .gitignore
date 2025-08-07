@@ -1,15 +1,15 @@
-# Ignore node_modules folder
+# Node modules
 node_modules/
 
-# Ignore environment variables file
-.env
-
-# Ignore build and log files
-dist/
-build/
-logs/
+# Logs
 *.log
 
-# Ignore system files
+# Build output
+dist/
+build/
+
+# dotenv
+.env
+
+# Mac system files
 .DS_Store
-Thumbs.db
