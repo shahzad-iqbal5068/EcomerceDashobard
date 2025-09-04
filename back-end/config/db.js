@@ -2,16 +2,22 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const MongoUrl = process.env.MONGO_URI;
 
-const connectDB = async ()=>{
-     try {
-        const conn = await mongoose.connect(MongoUrl);
+const connectDB = async () => {
+   try {
+      const conn = await mongoose.connect(MongoUrl,
+         {
+            dbName: "Ecomerce-Dashboard",
+             useNewUrlParser: true,
+            useUnifiedTopology: true
+         }
+      );
 
-        console.log(`✔ Mongo Db Connected ${conn.connection.host}`);
+      console.log(`✔ Mongo Db Connected ${conn.connection.host}`);
 
-     } catch (error) {
-        console.error(`Error: ${error.message}`);
-        process.exit(1);    // Exit process with failure
-     }
+   } catch (error) {
+      console.error(`Error: ${error.message}`);
+      process.exit(1);    // Exit process with failure
+   }
 
 }
 

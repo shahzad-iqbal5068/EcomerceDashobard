@@ -42,7 +42,7 @@ const Signup = ({vendorRequest}) => {
         const result =await senduserData(userdata);
 
         if (result) {
-                  localStorage.setItem("userid",result.data._id);
+                  localStorage.setItem("userid",JSON.stringify(result.data._id));
                   localStorage.setItem("token", JSON.stringify(result.auth));
                   dispatch(setUserDetail(result.data));
                   navigate("/");

@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from "react";
-import {  ShoppingBag } from "lucide-react";
+import {  FocusIcon, ShoppingBag } from "lucide-react";
 import {useNavigate} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {setSelectedProduct} from "../redux/product/cartSlice";
@@ -106,8 +106,10 @@ const Home = () => {
         ) : (
           <h1>No Result Found</h1>
         )}
+      
       </section>
       }
+      
     </div>
   );
 };

@@ -6,37 +6,50 @@ const useFetchApi = () => {
   const navigate = useNavigate();
 
   const apicall = useCallback(async ({ url, method = "GET", body = null }) => {
-   const token = JSON.parse(localStorage.getItem("token")) || null;
-   
-    try {
-      let response = await fetch(url, {
-        method: method || "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, 
-        },
-        body: method !== "GET" && method !== "DELETE" && body ? JSON.stringify(body) : undefined,
-      });
-      
-      if (response.status ===  401) {
-         toast.error("Session expired. Please log in again.");
-         navigate("/login");
-         localStorage.removeItem("token");
-         localStorage.removeItem("userid");
-         return
-      }
-      response = await response.json();
-      console.log("Response in useFetchApi", response);
+    const token = JSON.parse(localStorage.getItem("token")) || null;
 
-      return response; 
+    try {
+      const options = {
+        method: method || "GET",
+        headers: {},
+      };
+
+      // 🔹 Add token if exists
+      if (token) {
+        options.headers.Authorization = `Bearer ${token}`;
+      }
+
+      // 🔹 Handle FormData (file upload) vs JSON
+      if (body instanceof FormData) {
+        options.body = body; 
+        // ❌ Don't set Content-Type, browser will do it
+      } else if (body && method !== "GET" && method !== "DELETE") {
+        options.headers["Content-Type"] = "application/json";
+        options.body = JSON.stringify(body);
+      }
+
+      let response = await fetch(url, options);
+
+      if (response.status === 401) {
+        toast.error("Session expired. Please log in again.");
+        navigate("/login");
+        localStorage.removeItem("token");
+        localStorage.removeItem("userid");
+        return;
+      }
+
+      const data = await response.json();
+      console.log("Response in useFetchApi", data);
+
+      return data;
     } catch (error) {
       console.error("Error in API call:", error);
-      toast.error("something wrong try again  ",error);
-      navigate('/login');
+      toast.error("Something went wrong, try again.");
+      navigate("/login");
     }
   }, [navigate]);
 
-  return apicall; 
+  return apicall;
 };
 
 export default useFetchApi;

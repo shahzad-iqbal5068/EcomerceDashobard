@@ -29,16 +29,32 @@ const AddProduct = () => {
     fetchCategories();
   }, [fetchApi]);
 
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        setImage(reader.result);
-      };
+const handleImageChange = async (event) => {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const formData = new FormData();
+  formData.append("image", file);
+
+  try {
+    const data = await fetchApi({
+      url: "http://localhost:5000/upload/images",
+      method: "POST",
+      body: formData,
+    });
+
+    console.log("Cloudinary upload result:", data);
+
+    if (data.url) {
+      setImage(data.url);
+      toast.success("Image uploaded successfully!");
     }
-  };
+  } catch (error) {
+    console.error("Error uploading image:", error);
+    toast.error("Image upload failed");
+  }
+};
+
 
   const handleAddProduct = async (e) => {
     e.preventDefault();

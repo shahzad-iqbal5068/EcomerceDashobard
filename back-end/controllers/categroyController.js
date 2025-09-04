@@ -2,6 +2,7 @@ const Category = require('../models/categoryModal');
 
 const findCategory = async (req,res)=>{
     try {
+        
         let data = await Category.find({});
         // console.log(data);
         res.status(201).json(data);

@@ -19,8 +19,8 @@ const Nav = () => {
   // console.log("userdetail is ",userdetail)
   const { totalQuantity } = useSelector((state)=>state.cart);  
   const userid = JSON.parse(localStorage.getItem("userid"));
-  console.log("userid in nav.js",userid);
-  // const token = JSON.parse(localStorage.getItem("token"));
+  // console.log("userid in nav.js",userid);
+  const token = JSON.parse(localStorage.getItem("token"));
 
 
   useEffect(() => {

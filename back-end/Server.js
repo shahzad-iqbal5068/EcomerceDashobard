@@ -5,7 +5,11 @@ const connectDB = require("./config/db");
 const passport = require("passport");
 const session = require("express-session"); 
 require("./middleware/googleauth"); 
-const Product = require("./models/productModel")
+const Product = require("./models/productModel");
+const Category = require("./models/categoryModal");
+const cloudinary = require("cloudinary");
+const  fileupload = require("express-fileupload");
+const verifyToken= require("./middleware/auth");
 
 
 dotenv.config();
@@ -19,11 +23,19 @@ app.use(express.json());
 app.use(cors());
 
 // Routes
+
+// Enable file upload
+app.use(fileupload({
+  useTempFiles: true,
+  tempFileDir: "/tmp/",   // required for file.tempFilePath
+}));
+
+
+
 app.use("/", require("./routes/userRoute"));
 app.use("/", require("./routes/productRoute"));
 app.use("/", require('./routes/categoryRoute'));
 app.use("/", require('./routes/searchRoute'));
-
 
 // Session Middleware (Required for persistent login sessions)
 app.use(
@@ -64,7 +76,40 @@ app.get("/logout", (req, res) => {
 });
 
 
+app.post("/setcategory",async(req,res)=>{
+    const data=req.body
+    try {
+        const savedcatgories = await Category.insertMany(data)
+        res.status(201).json({message:"saved sucessfully",data:savedcatgories})
+        
+    } catch (error) {
+        res.status(500).json({error: error.message})
+    }
 
+});
+
+cloudinary.v2.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+app.post("/upload/images",verifyToken,async(req,res)=>{
+   console.log("images")
+    try {
+        const file= req.files.image;
+        const result = await cloudinary.v2.uploader.upload(file.tempFilePath,{
+            folder:"products"
+        });
+            res.status(201).json({ url: result.secure_url });
+    } catch (error) {
+        res.status(500).json({error:error.message})
+    }
+})
+
+app.post("/test",(req,res)=>{
+   res.send("hey ")
+})
 
 
  
