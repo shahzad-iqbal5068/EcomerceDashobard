@@ -200,7 +200,7 @@ This gives you a **complete CI/CD pipeline** — from testing → build → depl
 ### 🧑‍💻 Author
 
 **👤 Ch Shahzad**
-💼 MERN Stack Developer & DevOps Trainee
+💼 MERN Stack Developer & DevOps Engineer
 📍 Islamabad, Pakistan
-📧 [your email or LinkedIn link]
+📧 Choudhuryshahzad5068@gmail.com
 
