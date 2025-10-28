@@ -7,7 +7,8 @@ const productSchema = new mongoose.Schema(
     brand: { type: String, required: true, trim: true },
     category: { type: String, required: true, trim: true },
     userid: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-    image: { type: String, default: "" },
+     image: { type: String, default: "" },        // Cloudinary URL
+    imagePublicId: { type: String, default: "" }, // Cloudinary public_id
     description: { type: String, trim: true }
   },
   { timestamps: true }

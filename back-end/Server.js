@@ -36,6 +36,8 @@ app.use("/", require("./routes/userRoute"));
 app.use("/", require("./routes/productRoute"));
 app.use("/", require('./routes/categoryRoute'));
 app.use("/", require('./routes/searchRoute'));
+app.use("/", require('./routes/odersRoute'));
+
 
 // Session Middleware (Required for persistent login sessions)
 app.use(
