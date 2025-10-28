@@ -10,7 +10,7 @@ const ProfileModal = ({ onClose }) => {
   const profileImage = useSelector((state) => state.profile.profileImage);
   const [profileImageModal, setProfileImageModal] = useState(false);
   return (
-    <div className="bg-gray-100 w-[400px] h-[500px] fixed inset-0 m-auto p-2 z-50">
+    <div className="bg-gray-100 w-[400px] h-[500px] text-black fixed inset-0 m-auto p-2 z-50">
       <button className=" flex place-self-start" onClick={onClose}>
         <ArrowLeft size={30} />
       </button>

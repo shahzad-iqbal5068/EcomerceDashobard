@@ -48,12 +48,12 @@ const Nav = () => {
     <nav className="flex flex-col md:flex-row justify-center gap-5 md:justify-between font-medium items-center p-2 text-white bg-slate-400  sticky top-0 z-50 ">
     <div className="flex items-center gap-5 font-medium">
       <img
-        className="w-12 h-12 rounded-full"
+        className="w-auto h-10  border-2 border-amber-50"
         alt="logo"
         crossOrigin="anonymous"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHMxuqqnkGPEc0_-r1VvKQ4wALmZ3x-ueuUA&s"
+        src="./QuickMart.png"
       />
-      <h1 className="text-2xl">Multi Vendors E-Commerce</h1>
+      <h1 className="text-2xl">QuickMart</h1>
     </div>
 
     <ul className="flex flex-col md:flex-row gap-4 text-xl">
