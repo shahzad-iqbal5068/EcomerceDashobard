@@ -1,11 +1,14 @@
 import React, { useEffect, useState} from "react";
-import {  FocusIcon, ShoppingBag } from "lucide-react";
+import {  FocusIcon,  ShoppingBag } from "lucide-react";
 import {useNavigate} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {setSelectedProduct} from "../redux/product/cartSlice";
 import useFetchApi from "../customHook/useFetchApi";
 import {ClipLoader ,HashLoader} from 'react-spinners'
 import debounce from 'lodash/debounce';
+import "../App.css";
+
+
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -53,18 +56,20 @@ const Home = () => {
     dispatch(setSelectedProduct(product));
   };
   return (
+    <>
+    
     <div className="container mx-auto">
-      <h1 className="text-3xl text-center font-bold">Products List</h1>
+      <div className="flex justify-around p-4"> 
+      <h1 className="text-slate-500 font-bold text-3xl">Discover Your Style</h1>
       
 
-      <section className="flex  justify-center">
         <input
           type="text"
           className="search-box"
           onChange={searchHandle}
           placeholder="Search Box"
         />
-      </section>
+      </div>
       {loading ? <div  className="flex justify-center items-center min-h-[200px]">
         <HashLoader color="blue"  size={50}/>
       </div> :
@@ -72,12 +77,12 @@ const Home = () => {
         {products.length > 0 ? (
           products.map((item,index) => {
             return (
-              <div key={item._id || index}>
+              <div key={item._id || index} className="w-full max-w-[380px] ">
                 <div className="cursor-pointer flex flex-col w-full max-w-[380px]  bg-white border border-gray-200 rounded-lg p-2 ">
-                  <div className="relative group overflow-hidden">
+                  <div className="relative group overflow-hidden w-full h-64 perspective-1000">
                     <img  
                       src={item.image}
-                      className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:rotate-360 origin-left group-hover:translate-x-2"
+  className="w-full h-full object-cover transition-transform duration-500 ease-in-out origin-left group-hover:rotate-x-12 group-hover:-translate-x-2"
                       alt="preview"
                     />                 
                     <span className="flex justify-end relative inset-0 top-[-25px] sm:opacity-0 sm:group-hover:opacity-100 "
@@ -95,7 +100,7 @@ const Home = () => {
                     >
                       {item.name} ${item.price}                      
                     </h5>
-                    <p className="mb-3 font-normal hover:text-gray-700 ">
+                    <p className="mb-3 font-normal hover:text-gray-700 line-clamp-3 ">
                       {item.description}
                     </p>
                   </div>
@@ -109,8 +114,11 @@ const Home = () => {
       
       </section>
       }
-      
     </div>
+
+    {/* <Footer/> */}
+    </>
+
   );
 };
 
