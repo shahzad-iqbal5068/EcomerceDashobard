@@ -4,7 +4,7 @@
   "description": "this project on node and react js ",
   "main": "Server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"no test specified\"",
     "start": "nodemon server.js"
   },
   "author": "Ch shahzad",
