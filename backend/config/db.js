@@ -7,8 +7,6 @@ const connectDB = async () => {
       const conn = await mongoose.connect(MongoUrl,
          {
             dbName: "Ecomerce-Dashboard",
-             useNewUrlParser: true,
-            useUnifiedTopology: true
          }
       );
 
