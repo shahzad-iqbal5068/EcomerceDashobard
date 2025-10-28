@@ -4,8 +4,8 @@
   "description": "this project on node and react js ",
   "main": "Server.js",
   "scripts": {
-    "test": "echo \"no test specified\"",
-    "start": "nodemon server.js"
+  "test": "echo \"No backend tests yet\"",
+   "start": "nodemon server.js"
   },
   "author": "Ch shahzad",
   "license": "ISC",
