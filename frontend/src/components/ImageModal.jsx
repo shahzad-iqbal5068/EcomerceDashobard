@@ -109,4 +109,4 @@ const ImageModal = ({ onClose }) => {
   );
 };
 
-export default ImageModal;
+export default ImageModal
