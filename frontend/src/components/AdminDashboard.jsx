@@ -13,6 +13,7 @@ const AdminDashboard = () => {
   totalVendor:0
 })
  const token = JSON.parse(localStorage.getItem("token"));
+ const apiUser = import.meta.env.VITE_API_URL;
 //  console.log(token)
  useEffect(()=>{
   
@@ -21,7 +22,8 @@ const AdminDashboard = () => {
 
  const countUser =async()=>{
   try {
-    let response=await fetch('http://localhost:5000/user/count',{
+    let response=await fetch(`${apiUser}user/count`
+    ,{
       headers:{
         "Authorization": `Bearer ${token}`,
         "Content-Type": "application/json"
@@ -43,7 +45,7 @@ const AdminDashboard = () => {
  }
  const countProduct=async()=>{
   try {
-    let response = await fetch ('http://localhost:5000/product/count',{
+    let response = await fetch (`${apiUser}product/count`,{
       headers:{
         "Authorization":`Bearer ${token}`,
         "Content-Type":"application/json"

@@ -10,16 +10,17 @@ const AddProduct = () => {
     description: null,
     image: null,
   });
-
+  
   const fetchApi = useFetchApi();
   const [error, setError] = useState(false);
   const [catOption, setCatOption] = useState([]);
   const [image, setImage] = useState(null);
   const userid = JSON.parse(localStorage.getItem("userid"));
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const fetchCategories = async () => {
     const data = await fetchApi({
-      url: "http://localhost:5000/category",
+      url: `${apiUrl}category`,
       method: "GET",
     });
     if (data) setCatOption(data);

@@ -13,6 +13,7 @@ const Login = ()=>{
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
     const dispatch = useDispatch ();
+    const apiUrl = import.meta.env.VITE_API_URL;
 
     const handleLogin = async()=>{
 
@@ -48,7 +49,7 @@ const Login = ()=>{
       const email=emailRef.current.value;
       const password = passwordRef.current.value;
       try {
-        let response = await fetch('http://localhost:5000/login',{
+        let response = await fetch(`${apiUrl}login`,{
         method:'post',
         body:JSON.stringify({email,password}),
         headers:{

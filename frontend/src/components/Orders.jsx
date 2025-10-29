@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
-  const token = localStorage.getItem("token");
-  const userId = localStorage.getItem("userid");
-
+  const token = localStorage.getItem("token"); 
+  const apiUser = import.meta.env.VITE_API_URL;
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/orders?userId=${userId}`, {
+        const res = await fetch(`${apiUser}orders?userId=${userId}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         const data = await res.json();

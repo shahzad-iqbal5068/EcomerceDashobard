@@ -11,7 +11,7 @@ const ImageModal = ({ onClose }) => {
   const userid = JSON.parse(localStorage.getItem('userid'));
   const token = JSON.parse(localStorage.getItem('token'));
   const dispatch = useDispatch();
-
+  const apiUrl = import.meta.env.VITE_API_URL;
   // Handle file selection
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -28,7 +28,7 @@ const ImageModal = ({ onClose }) => {
   const SaveProfileImg =async()=>{
          console.log(selectedImage);
     try {
-      let result = await fetch(`http://localhost:5000/updateuser/${userid}`,{
+      let result = await fetch(`${apiUrl}updateuser/${userid}`,{
         method:"Put",
         headers:{
           'Content-Type':"application/json",
