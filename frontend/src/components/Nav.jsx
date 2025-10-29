@@ -21,6 +21,7 @@ const Nav = () => {
   const userid = JSON.parse(localStorage.getItem("userid"));
   // console.log("userid in nav.js",userid);
   const token = JSON.parse(localStorage.getItem("token"));
+  const apiUser = import.meta.env.VITE_API_URL;
 
 
   useEffect(() => {
@@ -32,7 +33,7 @@ const Nav = () => {
   },[]);
 
   const fetchUserData = async () => {
-    const url = `http://localhost:5000/users/${userid}`;
+    const url = `${apiUser}users/${userid}`;
     const response = await fetchApi({url});
     console.log("response in navbar is ",response);
     dispatch(setUserDetail(response[0]));

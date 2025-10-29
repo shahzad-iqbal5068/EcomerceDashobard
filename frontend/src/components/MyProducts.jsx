@@ -15,12 +15,13 @@ const MyProducts = () => {
     userid = JSON.parse(auth);
   }
   const token = JSON.parse(localStorage.getItem("token"));
+  const apiUrl = import.meta.env.VITE_API_URL;
   
   useEffect(() => {
     getProducts();
   }, []);
   const getProducts = async () => {
-    let result = await fetch(`http://localhost:5000/products/${userid}`, {
+    let result = await fetch(`${apiUrl}products/${userid}`, {
       headers:
        {
         "Content-Type": "application/json",
@@ -31,7 +32,7 @@ const MyProducts = () => {
     setProducts(result);
   };
   const deleteProduct = async (id) => {
-    let result = await fetch(`http://localhost:5000/products/${id}`, {
+    let result = await fetch(`${apiUrl}products/${id}`, {
       method: "delete",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +49,7 @@ const MyProducts = () => {
     const key = e.target.value;
     if (key) {
       let result = await fetch(
-        `http://localhost:5000/search/${key}/${userid}`,
+        `${apiUrl}search/${key}/${userid}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

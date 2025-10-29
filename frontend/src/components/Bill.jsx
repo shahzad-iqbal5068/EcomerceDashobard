@@ -25,7 +25,7 @@ const Bill = () => {
   const fetchApi = useFetchApi();
   const token = localStorage.getItem("token");
   const userId = JSON.parse(localStorage.getItem("userid"));
-
+  const apiUser = import.meta.env.VITE_API_URL;
   // handle form input change
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,7 +53,7 @@ const Bill = () => {
     console.log("Sending order data:", orderData);
 
     const response = await fetchApi({
-      url: "http://localhost:5000/orders",
+      url: `${apiUser}orders`,
       method: "POST",
       body: orderData,
       token,
