@@ -8,14 +8,14 @@ const UpdateProduct = () => {
   const params = useParams();
   const navigate = useNavigate();
   const token = JSON.parse(localStorage.getItem('token'))
-  const apiUser = import.meta.env.VITE_API_URL;
+  const apiUrl = import.meta.env.VITE_API_URL;
   useEffect(() => {
     console.log(params);
     getProductDetail();
   }, []);
   const getProductDetail = async () => {
     
-    let result = await fetch(`${apiUser}product/${params.id}`,{
+    let result = await fetch(`${apiUrl}/product/${params.id}`,{
         headers:{
            Authorization: `Bearer ${token}`
         }
@@ -29,7 +29,7 @@ const UpdateProduct = () => {
   };
   const handleupdateProduct = async () => {
     console.log(name, price, brand, category);
-    let result = await fetch(`${apiUser}products/${params.id}`, {
+    let result = await fetch(`${apiUrl}/products/${params.id}`, {
       method: 'Put',
       body: JSON.stringify({name,price,brand,category}),
       headers:{

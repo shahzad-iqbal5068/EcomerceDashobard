@@ -5,7 +5,7 @@ const OpenCamera = ({onClose}) => {
 
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
-  const apiUser = import.meta.env.VITE_API_URL;
+  const apiUrl= import.meta.env.VITE_API_URL;
 
   useEffect(()=>{
    
@@ -43,7 +43,7 @@ const OpenCamera = ({onClose}) => {
   
     // ✅ Save to Database
     try {
-      const response = await fetch(`${apiUser}api/users/update-profile/${userProfile._id}`, {
+      const response = await fetch(`${apiUrl}/api/users/update-profile/${userProfile._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
