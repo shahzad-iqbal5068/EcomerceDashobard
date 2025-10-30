@@ -53,7 +53,7 @@ const Bill = () => {
     console.log("Sending order data:", orderData);
 
     const response = await fetchApi({
-      url: `${apiUser}orders`,
+      url: `${apiUser}/orders`,
       method: "POST",
       body: orderData,
       token,

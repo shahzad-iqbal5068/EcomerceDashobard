@@ -49,7 +49,7 @@ const Login = ()=>{
       const email=emailRef.current.value;
       const password = passwordRef.current.value;
       try {
-        let response = await fetch(`${apiUrl}login`,{
+        let response = await fetch(`${apiUrl}/login`,{
         method:'post',
         body:JSON.stringify({email,password}),
         headers:{

@@ -28,7 +28,7 @@ const ImageModal = ({ onClose }) => {
   const SaveProfileImg =async()=>{
          console.log(selectedImage);
     try {
-      let result = await fetch(`${apiUrl}updateuser/${userid}`,{
+      let result = await fetch(`${apiUrl}/updateuser/${userid}`,{
         method:"Put",
         headers:{
           'Content-Type':"application/json",

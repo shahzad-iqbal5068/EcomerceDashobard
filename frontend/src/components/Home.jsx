@@ -19,7 +19,7 @@ const Home = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
   const getProducts = async () => {
     setloading(true)
-    const url =`${apiUrl}products`
+    const url =`${apiUrl}/products`
     let result = await fetchApi({url});
     setloading(false);
     setProducts(result);
@@ -38,7 +38,7 @@ const Home = () => {
     const key = e.target.value;
     if (key) {
       setloading(true)
-      const url = `${apiUrl}search/${key}`
+      const url = `${apiUrl}/search/${key}`
         let result = await fetchApi({url});
       if (result) {
         setloading(false)

@@ -16,10 +16,10 @@ const Nav = () => {
   const [showProfile, setShowProfile] = useState(false);
   const profileImage = useSelector((state) => state.profile.profileImage);
   const userdetail = useSelector((state)=>state.user.userDetail);
-  // console.log("userdetail is ",userdetail)
+  console.log("userdetail is ",userdetail)
   const { totalQuantity } = useSelector((state)=>state.cart);  
   const userid = JSON.parse(localStorage.getItem("userid"));
-  // console.log("userid in nav.js",userid);
+  console.log("userid in nav.js",userid);
   const token = JSON.parse(localStorage.getItem("token"));
   const apiUser = import.meta.env.VITE_API_URL;
 
@@ -33,10 +33,15 @@ const Nav = () => {
   },[]);
 
   const fetchUserData = async () => {
-    const url = `${apiUser}users/${userid}`;
-    const response = await fetchApi({url});
-    console.log("response in navbar is ",response);
-    dispatch(setUserDetail(response[0]));
+    const url = `${apiUser}/users/${userid}`;
+    try {
+      const response = await fetchApi({url});
+      console.log("response in navbar is ",response);
+      dispatch(setUserDetail(response[0]));
+      
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
   };
 
   const handleLogout = () => {
